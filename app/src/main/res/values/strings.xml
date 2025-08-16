@@ -2,4 +2,6 @@
     <string name="app_name">Aqua Track</string>
     <string name="welcome_message">Welcome to Aqua Track!</string>
     <string name="action_add_glass">Log your first glass of water!</string>
+    <string name="notification_enabled">Notifications have been enabled</string>
+    <string name="notification_disabled">Notifications disabled. You won\'t receive reminders.</string>
 </resources>
