@@ -1,5 +1,9 @@
 package com.example.aquatrack.presentation.ui
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -66,6 +70,20 @@ fun WaterTrackerScreen(
                     viewModel.onEvent(WaterTrackerEvent.AddWaterClicked)
                 }
             }
+
+            // Animated hint text that fades in and out
+            AnimatedVisibility(
+                visible = uiState.showFirstTimeHint,
+                enter = fadeIn(animationSpec = tween(500)),
+                exit = fadeOut(animationSpec = tween(500))
+            ) {
+                Text(
+                    text = "Tap the glass to log your drink!",
+                    style = MaterialTheme.typography.bodyLarge,
+                    modifier = Modifier.padding(top = 16.dp)
+                )
+            }
+
             Spacer(modifier = Modifier.height(32.dp))
             Text("History", style = MaterialTheme.typography.headlineSmall)
             Spacer(modifier = Modifier.height(16.dp))

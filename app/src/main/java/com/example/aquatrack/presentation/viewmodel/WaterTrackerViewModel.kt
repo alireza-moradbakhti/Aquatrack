@@ -27,7 +27,7 @@ class WaterTrackerViewModel @Inject constructor(
         // Observe the flow from the use case and update the state
         viewModelScope.launch {
             getAllWaterInTakesUseCase().collect { records ->
-                _uiState.update { it.copy(records = records) }
+                _uiState.update { it.copy(records = records, showFirstTimeHint = records.isEmpty()) }
             }
         }
     }
