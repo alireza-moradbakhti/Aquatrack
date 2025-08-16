@@ -4,6 +4,10 @@ import android.app.Application
 import androidx.room.Room
 import com.example.aquatrack.data.local.AquaTrackDao
 import com.example.aquatrack.data.local.AquaTrackDatabase
+import com.example.aquatrack.data.repository.WaterRepositoryImpl
+import com.example.aquatrack.domain.repository.WaterRepository
+import com.example.aquatrack.domain.usecase.AddWaterInTakeUseCase
+import com.example.aquatrack.domain.usecase.GetAllWaterInTakesUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -39,6 +43,29 @@ object AppModule {
     @Provides
     @Singleton
     fun provideAquaTrackDao(db: AquaTrackDatabase): AquaTrackDao = db.aquaTrackDao()
+
+
+    /**
+     * Provides the WaterRepository implementation.
+     *
+     * @param dao The AquaTrackDao instance.
+     * @return An instance of WaterRepository.
+     */
+    @Provides
+    @Singleton
+    fun provideWaterRepository(dao: AquaTrackDao): WaterRepository {
+        return WaterRepositoryImpl(dao)
+    }
+
+    @Provides
+    fun provideAddWaterIntakeUseCase(repository: WaterRepository): AddWaterInTakeUseCase {
+        return AddWaterInTakeUseCase(repository)
+    }
+
+    @Provides
+    fun provideGetAllWaterIntakesUseCase(repository: WaterRepository): GetAllWaterInTakesUseCase {
+        return GetAllWaterInTakesUseCase(repository)
+    }
 
 
 }
