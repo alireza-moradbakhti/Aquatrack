@@ -1,0 +1,40 @@
+package com.example.aquatrack.data.repository
+
+import com.example.aquatrack.data.dto.WaterInTakeRecord
+import com.example.aquatrack.data.local.AquaTrackDao
+import com.example.aquatrack.domain.model.WaterInTake
+import com.example.aquatrack.domain.repository.WaterRepository
+import com.example.aquatrack.util.toDomain
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+import javax.inject.Inject
+
+/**
+ * Implementation of the WaterRepository interface for managing water intake records.
+ * This class interacts with the AquaTrackDao to perform database operations.
+ *
+ * @property waterDao The DAO for accessing water intake records in the database.
+ */
+class WaterRepositoryImpl @Inject constructor(
+    private val waterDao: AquaTrackDao
+) : WaterRepository {
+    /**
+     * Adds a new water intake record to the repository.
+     *
+     * @param record The water intake record to be added.
+     */
+    override suspend fun addWaterIntake(record: WaterInTakeRecord) {
+        waterDao.insert(record)
+    }
+
+    /**
+     * Retrieves all water intake records from the repository.
+     *
+     * @return A flow that emits a list of all water intake records.
+     */
+    override fun getAllWaterIntakes(): Flow<List<WaterInTake>> {
+        return waterDao.getAllRecords().map { it.toDomain() }
+    }
+
+
+}
