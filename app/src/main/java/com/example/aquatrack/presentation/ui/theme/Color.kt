@@ -1,4 +1,4 @@
-package com.example.aquatrack.ui.theme
+package com.example.aquatrack.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
