@@ -71,6 +71,13 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    // MockK for creating mock objects in Kotlin
+    testImplementation(libs.mockk)
+    // Coroutines Test Helpers
+    testImplementation(libs.kotlinx.coroutines.test)
+    // Turbine for testing Kotlin Flows
+    testImplementation(libs.turbine)
+
     // Hilt
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
