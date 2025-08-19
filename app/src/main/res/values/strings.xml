@@ -8,4 +8,5 @@
     <string name="history_empty">No glasses logged today.</string>
     <string name="today_goal">Today\'s Goal: %1$d / %2$d glasses</string>
     <string name="goal_finished">Good job! You\'ve reached your goal!</string>
+    <string name="glass_count">Glass %d</string>
 </resources>

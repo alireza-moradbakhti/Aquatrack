@@ -24,4 +24,10 @@ interface WaterRepository {
      */
     fun getAllWaterIntakes(): Flow<List<WaterInTake>>
 
+    /**
+     * Deletes a specific water intake record from the repository.
+     *
+     * @param record The water intake record to be deleted.
+     */
+    suspend fun deleteWaterIntake(record: WaterInTake)
 }

@@ -1,9 +1,5 @@
 package com.example.aquatrack.presentation.ui
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -83,11 +79,19 @@ fun WaterTrackerScreen(
 
             Spacer(modifier = Modifier.height(32.dp))
 
-            Text(stringResource(R.string.history_title), style = MaterialTheme.typography.titleLarge)
+            Text(
+                stringResource(R.string.history_title),
+                style = MaterialTheme.typography.titleLarge
+            )
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            WaterHistoryList(records = uiState.records)
+            WaterHistoryList(
+                records = uiState.records,
+                onDelete = { record ->
+                    viewModel.onEvent(WaterTrackerEvent.DeleteLastRecord(record))
+                }
+            )
         }
     }
 }

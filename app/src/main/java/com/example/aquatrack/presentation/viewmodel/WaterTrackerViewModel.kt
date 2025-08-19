@@ -3,6 +3,7 @@ package com.example.aquatrack.presentation.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.aquatrack.domain.usecase.AddWaterInTakeUseCase
+import com.example.aquatrack.domain.usecase.DeleteWaterIntakeUseCase
 import com.example.aquatrack.domain.usecase.GetAllWaterInTakesUseCase
 import com.example.aquatrack.presentation.util.WaterTrackerEvent
 import com.example.aquatrack.presentation.util.WaterTrackerUiState
@@ -17,7 +18,8 @@ import javax.inject.Inject
 @HiltViewModel
 class WaterTrackerViewModel @Inject constructor(
     private val addWaterInTakeUseCase: AddWaterInTakeUseCase,
-    getAllWaterInTakesUseCase: GetAllWaterInTakesUseCase
+    private val deleteWaterIntakeUseCase: DeleteWaterIntakeUseCase,
+    getAllWaterInTakesUseCase: GetAllWaterInTakesUseCase,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(WaterTrackerUiState())
@@ -47,8 +49,15 @@ class WaterTrackerViewModel @Inject constructor(
                     _uiState.update { it.copy(isAnimationPlaying = true) }
                 }
             }
+
             is WaterTrackerEvent.AnimationFinished -> {
                 _uiState.update { it.copy(isAnimationPlaying = false) }
+            }
+
+            is WaterTrackerEvent.DeleteLastRecord -> {
+                viewModelScope.launch {
+                    deleteWaterIntakeUseCase(event.record)
+                }
             }
 
         }

@@ -5,6 +5,7 @@ import com.example.aquatrack.data.local.AquaTrackDao
 import com.example.aquatrack.domain.model.WaterInTake
 import com.example.aquatrack.domain.repository.WaterRepository
 import com.example.aquatrack.util.toDomain
+import com.example.aquatrack.util.toDto
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -34,6 +35,16 @@ class WaterRepositoryImpl @Inject constructor(
      */
     override fun getAllWaterIntakes(): Flow<List<WaterInTake>> {
         return waterDao.getAllRecords().map { it.toDomain() }
+    }
+
+
+    /**
+     * Deletes a specific water intake record from the repository.
+     *
+     * @param record The water intake record to be deleted.
+     */
+    override suspend fun deleteWaterIntake(record: WaterInTake) {
+        waterDao.delete(record.toDto())
     }
 
 

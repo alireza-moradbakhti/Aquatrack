@@ -1,6 +1,7 @@
 package com.example.aquatrack.data.local
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -27,4 +28,11 @@ interface AquaTrackDao {
      */
     @Query("SELECT * FROM ${AppConstants.WATER_INTAKE_TABLE} ORDER BY timestamp DESC")
     fun getAllRecords(): Flow<List<WaterInTakeRecord>>
+
+    /**
+     * Deletes a specific water intake record from the table.
+     * @param record The record to be deleted.
+     */
+    @Delete
+    suspend fun delete(record: WaterInTakeRecord)
 }

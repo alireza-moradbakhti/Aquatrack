@@ -22,3 +22,14 @@ fun WaterInTakeRecord.toDomain(): WaterInTake {
 fun List<WaterInTakeRecord>.toDomain(): List<WaterInTake> {
     return this.map { it.toDomain() }
 }
+
+/**
+ * Extension function to map a WaterInTake domain model to a WaterInTakeRecord DTO.
+ */
+fun WaterInTake.toDto(): WaterInTakeRecord {
+    return WaterInTakeRecord(
+        id = this.id,
+        timestamp = this.timestamp.time,
+        amountInMl = this.amountInMl
+    )
+}
