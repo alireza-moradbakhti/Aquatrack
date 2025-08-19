@@ -1,7 +1,7 @@
 package com.example.aquatrack.util
 
-import com.example.aquatrack.data.dto.WaterInTakeRecord
-import com.example.aquatrack.domain.model.WaterInTake
+import com.example.aquatrack.feature_home.data.dto.WaterInTakeRecord
+import com.example.aquatrack.feature_home.domain.model.WaterInTake
 import java.util.Date
 
 
