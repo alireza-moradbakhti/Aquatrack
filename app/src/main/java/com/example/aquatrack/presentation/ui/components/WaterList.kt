@@ -16,7 +16,7 @@ import com.example.aquatrack.domain.model.WaterInTake
 
 
 @Composable
-fun WaterHistoryList(records: List<WaterInTake>) {
+fun WaterHistoryList(records: List<WaterInTake>, onDelete: (WaterInTake) -> Unit) {
     if (records.isEmpty()) {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Text(
@@ -29,7 +29,8 @@ fun WaterHistoryList(records: List<WaterInTake>) {
             items(records) { record ->
                 HistoryItem(
                     record,
-                    records.size - records.indexOf(record)
+                    records.size - records.indexOf(record),
+                    onDelete = { onDelete(record) }
                 )
             }
         }
