@@ -10,11 +10,13 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.airbnb.lottie.compose.*
 import com.example.aquatrack.R
+import com.example.aquatrack.presentation.ui.components.GoalProgress
 import com.example.aquatrack.presentation.ui.components.WaterGlassAnimation
 import com.example.aquatrack.presentation.ui.components.WaterHistoryList
 import com.example.aquatrack.presentation.util.WaterTrackerEvent
@@ -46,7 +48,7 @@ fun WaterTrackerScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Daily Water Tracker") },
+                title = { Text(stringResource(R.string.app_name)) },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = colorResource(R.color.gothic_blue_light),
                     titleContentColor = colorResource(R.color.white)
@@ -61,6 +63,14 @@ fun WaterTrackerScreen(
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+
+            GoalProgress(
+                glassesCount = uiState.glassesCount,
+                dailyGoal = uiState.dailyGoal
+            )
+
+            Spacer(modifier = Modifier.height(32.dp))
+
             WaterGlassAnimation(
                 composition = lottieComposition,
                 progress = { lottieProgress }
@@ -71,22 +81,12 @@ fun WaterTrackerScreen(
                 }
             }
 
-            // Animated hint text that fades in and out
-            AnimatedVisibility(
-                visible = uiState.showFirstTimeHint,
-                enter = fadeIn(animationSpec = tween(500)),
-                exit = fadeOut(animationSpec = tween(500))
-            ) {
-                Text(
-                    text = "Tap the glass to log your drink!",
-                    style = MaterialTheme.typography.bodyLarge,
-                    modifier = Modifier.padding(top = 16.dp)
-                )
-            }
-
             Spacer(modifier = Modifier.height(32.dp))
-            Text("History", style = MaterialTheme.typography.headlineSmall)
+
+            Text(stringResource(R.string.history_title), style = MaterialTheme.typography.titleLarge)
+
             Spacer(modifier = Modifier.height(16.dp))
+
             WaterHistoryList(records = uiState.records)
         }
     }

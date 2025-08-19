@@ -24,10 +24,14 @@ class WaterTrackerViewModel @Inject constructor(
     val uiState: StateFlow<WaterTrackerUiState> = _uiState.asStateFlow()
 
     init {
-        // Observe the flow from the use case and update the state
         viewModelScope.launch {
             getAllWaterInTakesUseCase().collect { records ->
-                _uiState.update { it.copy(records = records, showFirstTimeHint = records.isEmpty()) }
+                _uiState.update {
+                    it.copy(
+                        records = records,
+                        glassesCount = records.size
+                    )
+                }
             }
         }
     }
@@ -46,6 +50,7 @@ class WaterTrackerViewModel @Inject constructor(
             is WaterTrackerEvent.AnimationFinished -> {
                 _uiState.update { it.copy(isAnimationPlaying = false) }
             }
+
         }
     }
 }
