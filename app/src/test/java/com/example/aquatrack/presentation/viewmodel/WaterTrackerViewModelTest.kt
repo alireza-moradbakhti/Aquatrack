@@ -4,6 +4,7 @@ import app.cash.turbine.test
 import com.example.aquatrack.core.util.MainCoroutineRule
 import com.example.aquatrack.domain.model.WaterInTake
 import com.example.aquatrack.domain.usecase.AddWaterInTakeUseCase
+import com.example.aquatrack.domain.usecase.DeleteWaterIntakeUseCase
 import com.example.aquatrack.domain.usecase.GetAllWaterInTakesUseCase
 import com.example.aquatrack.presentation.util.WaterTrackerEvent
 import io.mockk.coEvery
@@ -29,6 +30,7 @@ class WaterTrackerViewModelTest {
     // We create "mock" (fake) versions of our dependencies
     private lateinit var addWaterIntakeUseCase: AddWaterInTakeUseCase
     private lateinit var getAllWaterIntakesUseCase: GetAllWaterInTakesUseCase
+    private lateinit var deleteWaterIntakeUseCase: DeleteWaterIntakeUseCase
 
     // The class we are testing
     private lateinit var viewModel: WaterTrackerViewModel
@@ -38,6 +40,7 @@ class WaterTrackerViewModelTest {
         // Initialize the mocks before each test
         addWaterIntakeUseCase = mockk(relaxed = true) // relaxed = true allows us to not mock every single function
         getAllWaterIntakesUseCase = mockk()
+        deleteWaterIntakeUseCase = mockk(relaxed = true)
 
         // Before each test, we set up a default behavior for our mocks
         // Here, we make sure the "get all" use case returns an empty list initially
@@ -46,55 +49,72 @@ class WaterTrackerViewModelTest {
         // Create a new instance of the ViewModel with the fake use cases
         viewModel = WaterTrackerViewModel(
             addWaterInTakeUseCase = addWaterIntakeUseCase,
-            getAllWaterInTakesUseCase = getAllWaterIntakesUseCase
+            getAllWaterInTakesUseCase = getAllWaterIntakesUseCase,
+            deleteWaterIntakeUseCase = deleteWaterIntakeUseCase
         )
     }
 
     @Test
     fun `when AddWaterClicked event is sent, uiState isAnimationPlaying should be true`() = runTest {
-        // Use the 'test' function from Turbine to test the StateFlow
         viewModel.uiState.test {
-            // 1. Skip the initial state emission
-            awaitItem()
+            awaitItem() // Skip initial state
 
-            // 2. Send the event to the ViewModel
             viewModel.onEvent(WaterTrackerEvent.AddWaterClicked)
 
-            // 3. Await the new state emission and assert its value
             val newState = awaitItem()
             assertTrue("isAnimationPlaying should be true after click", newState.isAnimationPlaying)
 
-            // 4. Verify that our "add" use case was actually called
             coVerify { addWaterIntakeUseCase(250) }
-
-            // 5. Cancel the collector to avoid leaks
             cancelAndIgnoreRemainingEvents()
         }
     }
 
     @Test
-    fun `when viewmodel is initialized, it should show first time hint if records are empty`() = runTest {
-        // The setup already configures the mock to return an empty list.
-        // We just need to check the initial state.
-        val initialState = viewModel.uiState.value
-        assertTrue("showFirstTimeHint should be true for empty list", initialState.showFirstTimeHint)
+    fun `when DeleteLastRecord event is sent, delete use case should be called`() = runTest {
+        // ARRANGE: Create a fake record to delete
+        val fakeRecord = WaterInTake(id = 1, timestamp = Date(), amountInMl = 250)
+
+        // ACT: Send the delete event
+        viewModel.onEvent(WaterTrackerEvent.DeleteLastRecord(fakeRecord))
+
+        // ASSERT: Verify that the delete use case was called with the correct record
+        coVerify { deleteWaterIntakeUseCase(fakeRecord) }
     }
 
     @Test
-    fun `when viewmodel is initialized, it should not show first time hint if records exist`() = runTest {
-        // ARRANGE: Override the default mock behavior for this specific test
-        val fakeRecords = listOf(WaterInTake(1, Date(), 250))
+    fun `when viewmodel is initialized with empty list, glassesCount should be 0`() = runTest {
+        // The default setup already returns an empty list.
+        viewModel.uiState.test {
+            val initialState = awaitItem()
+            assertEquals(0, initialState.glassesCount)
+            cancelAndIgnoreRemainingEvents()
+        }
+    }
+
+    @Test
+    fun `when viewmodel is initialized with a list of 3 records, glassesCount should be 3`() = runTest {
+        // ARRANGE: Override mock to return a list with 3 items
+        val fakeRecords = listOf(
+            WaterInTake(1, Date(), 250),
+            WaterInTake(2, Date(), 250),
+            WaterInTake(3, Date(), 250)
+        )
         coEvery { getAllWaterIntakesUseCase() } returns flowOf(fakeRecords)
 
-        // ACT: Re-create the ViewModel to trigger the init block with the new mock data
-        viewModel = WaterTrackerViewModel(addWaterIntakeUseCase, getAllWaterIntakesUseCase)
+        // ACT: Re-create the ViewModel to trigger the init block with new data
+        viewModel = WaterTrackerViewModel(
+            addWaterIntakeUseCase,
+            deleteWaterIntakeUseCase,
+            getAllWaterIntakesUseCase
+        )
 
-        // ASSERT: Check the state
+        // ASSERT: Check the glassesCount in the state
         viewModel.uiState.test {
             val state = awaitItem()
-            assertEquals(false, state.showFirstTimeHint)
-            assertEquals(1, state.records.size)
+            assertEquals(3, state.glassesCount)
+            assertEquals(3, state.records.size)
             cancelAndIgnoreRemainingEvents()
         }
     }
+
 }
