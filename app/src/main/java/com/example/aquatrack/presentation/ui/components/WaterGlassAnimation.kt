@@ -18,7 +18,7 @@ fun WaterGlassAnimation(
         composition = composition,
         progress = progress,
         modifier = Modifier
-            .size(250.dp)
+            .size(200.dp)
             .clickable(onClick = onGlassClick)
     )
 }

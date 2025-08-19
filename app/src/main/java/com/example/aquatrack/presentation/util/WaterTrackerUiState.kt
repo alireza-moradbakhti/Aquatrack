@@ -6,5 +6,6 @@ import com.example.aquatrack.domain.model.WaterInTake
 data class WaterTrackerUiState(
     val records: List<WaterInTake> = emptyList(),
     val isAnimationPlaying: Boolean = false,
-    val showFirstTimeHint: Boolean = false
+    val dailyGoal: Int = 8,
+    val glassesCount: Int = 0
 )
