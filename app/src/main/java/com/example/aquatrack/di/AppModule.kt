@@ -2,12 +2,12 @@ package com.example.aquatrack.di
 
 import android.app.Application
 import androidx.room.Room
-import com.example.aquatrack.data.local.AquaTrackDao
-import com.example.aquatrack.data.local.AquaTrackDatabase
-import com.example.aquatrack.data.repository.WaterRepositoryImpl
-import com.example.aquatrack.domain.repository.WaterRepository
-import com.example.aquatrack.domain.usecase.AddWaterInTakeUseCase
-import com.example.aquatrack.domain.usecase.GetAllWaterInTakesUseCase
+import com.example.aquatrack.feature_home.data.local.AquaTrackDao
+import com.example.aquatrack.feature_home.data.local.AquaTrackDatabase
+import com.example.aquatrack.feature_home.data.repository.WaterRepositoryImpl
+import com.example.aquatrack.feature_home.domain.repository.WaterRepository
+import com.example.aquatrack.feature_home.domain.usecase.AddWaterInTakeUseCase
+import com.example.aquatrack.feature_home.domain.usecase.GetAllWaterInTakesUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

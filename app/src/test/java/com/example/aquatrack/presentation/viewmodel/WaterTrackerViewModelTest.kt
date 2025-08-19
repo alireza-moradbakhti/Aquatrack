@@ -2,11 +2,12 @@ package com.example.aquatrack.presentation.viewmodel
 
 import app.cash.turbine.test
 import com.example.aquatrack.core.util.MainCoroutineRule
-import com.example.aquatrack.domain.model.WaterInTake
-import com.example.aquatrack.domain.usecase.AddWaterInTakeUseCase
-import com.example.aquatrack.domain.usecase.DeleteWaterIntakeUseCase
-import com.example.aquatrack.domain.usecase.GetAllWaterInTakesUseCase
-import com.example.aquatrack.presentation.util.WaterTrackerEvent
+import com.example.aquatrack.feature_home.domain.model.WaterInTake
+import com.example.aquatrack.feature_home.domain.usecase.AddWaterInTakeUseCase
+import com.example.aquatrack.feature_home.domain.usecase.DeleteWaterIntakeUseCase
+import com.example.aquatrack.feature_home.domain.usecase.GetAllWaterInTakesUseCase
+import com.example.aquatrack.feature_home.presentation.util.WaterTrackerEvent
+import com.example.aquatrack.feature_home.presentation.viewmodel.WaterTrackerViewModel
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
