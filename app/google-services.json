@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "377182810926",
+    "project_id": "aquatrack-bfaad",
+    "storage_bucket": "aquatrack-bfaad.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:377182810926:android:066eb51ae0d6071b3000bf",
+        "android_client_info": {
+          "package_name": "com.example.aquatrack"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgOjO7P0bu9IRrL6avSYzrMFjh4etmSVY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
