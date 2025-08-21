@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.example.aquatrack" />
+                  <option name="mobileSdkAppId" value="1:377182810926:android:066eb51ae0d6071b3000bf" />
+                  <option name="projectId" value="aquatrack-bfaad" />
+                  <option name="projectNumber" value="377182810926" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
