@@ -8,9 +8,126 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="gothic_blue">#0020BE</color>
-    <color name="gothic_blue_dark">#001A9C</color>
-    <color name="gothic_blue_light">#1A4DED</color>
-    <color name="gothic_blue_accent">#0040FF</color>
+    <color name="water_background">#ACBFFA</color>
+    <color name="surface_background">#DDE5FD</color>
+
+    <!-- custom colors -->
+    <color name="primary_green">#C9006A6B</color>
+    <color name="primary_light_green">#66BB6A</color>
+    <color name="primary_dark_green">#004D40</color>
+    <color name="primary_blue">#2196F3</color>
+    <color name="primary_light_blue">#BACAEDFF</color>
+    <color name="primary_dark_blue">#0D47A1</color>
+    <color name="primary_red">#F44336</color>
+    <color name="primary_light_red">#E57373</color>
+    <color name="primary_dark_red">#B71C1C</color>
+
+
+    <!-- Gray Shades -->
+    <color name="gray_shade1">#FAFAFA</color>
+    <color name="gray_shade2">#F5F5F5</color>
+    <color name="gray_shade3">#EEEEEE</color>
+    <color name="gray_shade4">#E0E0E0</color>
+    <color name="gray_shade5">#BDBDBD</color>
+    <color name="gray_shade6">#9E9E9E</color>
+    <color name="gray_shade7">#757575</color>
+    <color name="gray_shade8">#616161</color>
+    <color name="gray_shade9">#424242</color>
+    <color name="gray_shade10">#212121</color>
+
+    <!-- black shades -->
+    <color name="black_shade1">#E0E0E0</color>
+    <color name="black_shade2">#B3B3B3</color>
+    <color name="black_shade3">#808080</color>
+    <color name="black_shade4">#4D4D4D</color>
+    <color name="black_shade5">#1A1A1A</color>
+    <color name="black_shade6">#F2171717</color>
+    <color name="black_shade7">#1B1B1B</color>
+    <color name="black_shade8">#121212</color>
+    <color name="black_shade9">#101010</color>
+    <color name="black_shade10">#000000</color>
+
+    <!-- blue shades -->
+    <color name="blue_shade1">#E3F2FD</color>
+    <color name="blue_shade2">#BBDEFB</color>
+    <color name="blue_shade3">#90CAF9</color>
+    <color name="blue_shade4">#64B5F6</color>
+    <color name="blue_shade5">#42A5F5</color>
+    <color name="blue_shade6">#2196F3</color>
+    <color name="blue_shade7">#1E88E5</color>
+    <color name="blue_shade8">#1976D2</color>
+    <color name="blue_shade9">#1565C0</color>
+    <color name="blue_shade10">#0D47A1</color>
+
+    <!-- red shades -->
+    <color name="red_shade1">#FFEBEE</color>
+    <color name="red_shade2">#FFCDD2</color>
+    <color name="red_shade3">#EF9A9A</color>
+    <color name="red_shade4">#E57373</color>
+    <color name="red_shade5">#EF5350</color>
+    <color name="red_shade6">#F44336</color>
+    <color name="red_shade7">#E53935</color>
+    <color name="red_shade8">#D32F2F</color>
+    <color name="red_shade9">#C62828</color>
+    <color name="red_shade10">#B71C1C</color>
+
+    <!-- green shades -->
+    <color name="green_shade1">#E8F5E9</color>
+    <color name="green_shade2">#C8E6C9</color>
+    <color name="green_shade3">#A5D6A7</color>
+    <color name="green_shade4">#81C784</color>
+    <color name="green_shade5">#66BB6A</color>
+    <color name="green_shade6">#4CAF50</color>
+    <color name="green_shade7">#43A047</color>
+    <color name="green_shade8">#388E3C</color>
+    <color name="green_shade9">#2E7D32</color>
+    <color name="green_shade10">#1B5E20</color>
+
+    <!-- Yellow Shades -->
+    <color name="golden_shade1">#FFF8E1</color>
+    <color name="golden_shade2">#FFECB3</color>
+    <color name="golden_shade3">#FFE082</color>
+    <color name="golden_shade4">#FFD54F</color>
+    <color name="golden_shade5">#FFCA28</color>
+    <color name="golden_shade6">#FFC107</color>
+    <color name="golden_shade7">#FFB300</color>
+    <color name="golden_shade8">#FFA000</color>
+    <color name="golden_shade9">#FF8F00</color>
+    <color name="golden_shade10">#FF6F00</color>
+
+    <!-- Purple Shades -->
+    <color name="purple_shade1">#F3E5F5</color>
+    <color name="purple_shade2">#E1BEE7</color>
+    <color name="purple_shade3">#CE93D8</color>
+    <color name="purple_shade4">#BA68C8</color>
+    <color name="purple_shade5">#AB47BC</color>
+    <color name="purple_shade6">#9C27B0</color>
+    <color name="purple_shade7">#8E24AA</color>
+    <color name="purple_shade8">#7B1FA2</color>
+    <color name="purple_shade9">#6A1B9A</color>
+    <color name="purple_shade10">#4A148C</color>
+
+    <!-- button colors -->
+    <color name="button_purple">#FF6200EE</color>
+    <color name="button_dark_purple">#FF3700B3</color>
+    <color name="button_cyan">#FF03DAC5</color>
+    <color name="button_dark_cyan">#FF018786</color>
+    <color name="button_rose">#FFBB86FC</color>
+    <color name="button_dark_rose">#FF3700B3</color>
+    <color name="button_light_gray">#D3D3D3</color>
+    <color name="button_dark_gray">#A9A9A9</color>
+    <color name="button_light_blue">#ADD8E6</color>
+    <color name="button_dark_blue">#00008B</color>
+    <color name="button_light_green">#90EE90</color>
+    <color name="button_dark_green">#006400</color>
+    <color name="button_light_yellow">#FFFFE0</color>
+    <color name="button_dark_yellow">#FFD700</color>
+    <color name="button_light_red">#FF7F7F</color>
+    <color name="button_dark_red">#8B0000</color>
+    <color name="button_grass">#066663</color>
+
+
+
+
 
 </resources>

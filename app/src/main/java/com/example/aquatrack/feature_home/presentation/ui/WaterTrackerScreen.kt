@@ -46,7 +46,7 @@ fun WaterTrackerScreen(
             TopAppBar(
                 title = { Text(stringResource(R.string.app_name)) },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = colorResource(R.color.gothic_blue_light),
+                    containerColor = colorResource(R.color.blue_shade4),
                     titleContentColor = colorResource(R.color.white)
                 )
             )
