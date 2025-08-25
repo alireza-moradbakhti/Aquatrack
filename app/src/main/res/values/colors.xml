@@ -11,6 +11,18 @@
     <color name="water_background">#ACBFFA</color>
     <color name="surface_background">#DDE5FD</color>
 
+    <!-- custom colors -->
+    <color name="primary_green">#C9006A6B</color>
+    <color name="primary_light_green">#66BB6A</color>
+    <color name="primary_dark_green">#004D40</color>
+    <color name="primary_blue">#2196F3</color>
+    <color name="primary_light_blue">#BACAEDFF</color>
+    <color name="primary_dark_blue">#0D47A1</color>
+    <color name="primary_red">#F44336</color>
+    <color name="primary_light_red">#E57373</color>
+    <color name="primary_dark_red">#B71C1C</color>
+
+
     <!-- Gray Shades -->
     <color name="gray_shade1">#FAFAFA</color>
     <color name="gray_shade2">#F5F5F5</color>

@@ -20,7 +20,7 @@ class AuthRepositoryImpl @Inject constructor(
      * If no user is authenticated, it emits a null value.
      */
     override val currentUser: Flow<FirebaseUser?> = callbackFlow {
-        val authStateListener = FirebaseAuth.AuthStateListener {firebaseAuth ->
+        val authStateListener = FirebaseAuth.AuthStateListener { firebaseAuth ->
             trySend(firebaseAuth.currentUser).isSuccess
         }
         auth.addAuthStateListener(authStateListener)
@@ -55,6 +55,29 @@ class AuthRepositoryImpl @Inject constructor(
         return try {
             auth.signOut()
             Resource.Success(Unit)
+        } catch (e: Exception) {
+            Resource.Error(e.message ?: "An unexpected error occurred.")
+        }
+    }
+
+    override suspend fun forgotPassword(email: String): Resource<Unit> {
+        return try {
+            auth.sendPasswordResetEmail(email)
+            Resource.Success(Unit)
+        } catch (e: Exception) {
+            Resource.Error(e.message ?: "An unexpected error occurred.")
+        }
+    }
+
+    override suspend fun signUpWithEmailAndPassword(
+        email: String,
+        password: String
+    ): Resource<FirebaseUser> {
+
+        return try {
+            val authResult = auth.createUserWithEmailAndPassword(email, password)
+            Resource.Success(authResult.result.user!!)
+
         } catch (e: Exception) {
             Resource.Error(e.message ?: "An unexpected error occurred.")
         }

@@ -39,4 +39,21 @@ interface AuthRepository {
      */
     suspend fun signOut(): Resource<Unit>
 
+    /**
+     * Sends a password reset email to the user's email address.
+     * @param email The user's email address.
+     * @return A Resource indicating the success or failure of the password reset operation.
+     */
+    suspend fun forgotPassword(email: String): Resource<Unit>
+
+    //------------------------------------------- SignUp implementation -------------------------------------------//
+
+    /**
+     * Signs up a new user with email and password.
+     * @param email The user's email address.
+     * @param password The user's password.
+     * @return A Resource containing the FirebaseUser if successful, or an error if not.
+     */
+    suspend fun signUpWithEmailAndPassword(email: String, password: String): Resource<FirebaseUser>
+
 }

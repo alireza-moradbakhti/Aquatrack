@@ -1,4 +1,4 @@
-package com.example.aquatrack.feature_home.presentation
+package com.example.aquatrack.core
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -9,9 +9,10 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
+import androidx.navigation.compose.rememberNavController
 import com.example.aquatrack.R
-import com.example.aquatrack.feature_home.presentation.ui.WaterTrackerScreen
 import com.example.aquatrack.feature_home.presentation.ui.theme.AquaTrackTheme
+import com.example.aquatrack.navigation.RootNavGraph
 import com.example.aquatrack.util.showMessage
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,7 +36,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AquaTrackTheme {
-                WaterTrackerScreen()
+                val navController = rememberNavController()
+                RootNavGraph(navController = navController)
             }
         }
     }
@@ -51,4 +53,3 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
