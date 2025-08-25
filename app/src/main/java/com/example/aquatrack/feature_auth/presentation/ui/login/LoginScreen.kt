@@ -196,5 +196,5 @@ fun LoginScreen(
     }
 
     //todo: handle if user pressed back to close the app
-    if (!uiState.isLoading) navController.navigate(Screen.Home.route)
+//    if (!uiState.isLoading) navController.navigate(Screen.Home.route)
 }
