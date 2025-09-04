@@ -8,9 +8,12 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material3.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.paint
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -25,12 +28,15 @@ fun WelcomeScreen(
     navController: NavController
 ) {
     Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = colorResource(R.color.primary_light_blue)
+        modifier = Modifier.fillMaxSize()
     ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .paint(
+                    painterResource(id = R.drawable.background_auth),
+                    contentScale = ContentScale.FillBounds
+                )
                 .padding(16.dp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
@@ -45,24 +51,24 @@ fun WelcomeScreen(
                         color = colorResource(R.color.primary_green),
                         shape = RoundedCornerShape(64.dp)
                     )
-                    .padding(12.dp),
+                    .padding(16.dp),
                 contentScale = ContentScale.FillBounds
             )
             Spacer(modifier = Modifier.height(32.dp))
             Text(
                 text = stringResource(R.string.welcome),
-                fontSize = 26.sp,
+                fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
-                color = colorResource(R.color.black_shade10)
+                color = colorResource(R.color.white)
             )
             Spacer(modifier = Modifier.height(10.dp))
             Text(
                 text = stringResource(R.string.welcome_message),
                 textAlign = TextAlign.Center,
                 fontSize = 16.sp,
-                color = colorResource(R.color.gray_shade7)
+                color = colorResource(R.color.gray_shade3)
             )
-            Spacer(modifier = Modifier.weight(1f))
+            Spacer(modifier = Modifier.height(24.dp))
             Button(
                 onClick = { navController.navigate(Screen.Login.route) },
                 modifier = Modifier
@@ -77,11 +83,24 @@ fun WelcomeScreen(
                     disabledContentColor = colorResource(R.color.gray_shade4)
                 )
             ) {
-                Text(
-                    text = stringResource(R.string.btn_continue),
-                    fontSize = 16.sp
-                )
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        text = stringResource(R.string.btn_continue),
+                        fontSize = 16.sp
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.ArrowForward,
+                        contentDescription = "Continue", // For accessibility
+                        tint = colorResource(R.color.white)
+                    )
+
+                }
             }
+            Spacer(modifier = Modifier.weight(1f))
         }
     }
 }
