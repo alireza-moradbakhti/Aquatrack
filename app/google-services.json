@@ -12,7 +12,20 @@
           "package_name": "com.example.aquatrack"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "377182810926-t1mh1c9pupl1qoht31bjd90jhp25a3uf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.aquatrack",
+            "certificate_hash": "f67f6054e33c6c67d70cc137e93bd258e6a39c02"
+          }
+        },
+        {
+          "client_id": "377182810926-6vdo50mmcqpdjc5u95s8mkkho5cgi0hu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBgOjO7P0bu9IRrL6avSYzrMFjh4etmSVY"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "377182810926-6vdo50mmcqpdjc5u95s8mkkho5cgi0hu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
