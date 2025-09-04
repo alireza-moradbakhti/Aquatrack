@@ -5,6 +5,10 @@ import androidx.lifecycle.viewModelScope
 import com.example.aquatrack.feature_auth.domain.usecase.AuthUseCases
 import com.example.aquatrack.feature_auth.presentation.utils.LoginEvent
 import com.example.aquatrack.feature_auth.presentation.utils.LoginUiState
+import com.example.aquatrack.feature_auth.presentation.utils.SignUpEvent
+import com.example.aquatrack.feature_auth.presentation.utils.SignUpUiState
+import com.example.aquatrack.util.checkEmailRegex
+import com.example.aquatrack.util.passwordMatch
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -19,6 +23,9 @@ class AuthViewModel @Inject constructor(
 
     private val _loginUiState = MutableStateFlow(LoginUiState())
     val loginUiState = _loginUiState.asStateFlow()
+
+    private val _signUpUiState = MutableStateFlow(SignUpUiState())
+    val signUpUiState = _signUpUiState.asStateFlow()
 
 
     fun onLoginEvent(event: LoginEvent) {
@@ -87,6 +94,83 @@ class AuthViewModel @Inject constructor(
 
             }
         }
+    }
+
+    fun onSignUpEvent(event: SignUpEvent) {
+        when (event) {
+            is SignUpEvent.EmailChanged -> {
+                _signUpUiState.update {
+                    it.copy(
+                        email = event.email,
+                        isEmailValid = event.email.checkEmailRegex()
+                    )
+                }
+            }
+
+            is SignUpEvent.PasswordChange -> {
+                _signUpUiState.update {
+                    it.copy(
+                        password = event.password,
+                        isPasswordMatch = passwordMatch(
+                            event.password,
+                            _signUpUiState.value.confirmPassword
+                        )
+                    )
+                }
+            }
+
+            is SignUpEvent.ConfirmPasswordChange -> {
+                _signUpUiState.update {
+                    it.copy(
+                        confirmPassword = event.confirmPassword,
+                        isPasswordMatch = passwordMatch(
+                            event.confirmPassword,
+                            _signUpUiState.value.password
+                        )
+                    )
+                }
+            }
+
+            is SignUpEvent.TogglePasswordVisibility -> {
+                _signUpUiState.update {
+                    it.copy(isPasswordVisible = event.isVisible)
+                }
+            }
+
+            is SignUpEvent.ToggleConfirmPasswordVisibility -> {
+                _signUpUiState.update {
+                    it.copy(isConfirmPasswordVisible = event.isVisible)
+                }
+            }
+
+            is SignUpEvent.SignUpClick -> {
+                viewModelScope.launch {
+                    _signUpUiState.update {
+                        it.copy(
+                            isLoading = true
+                        )
+                    }
+
+                    val result = authUseCases.signUpUseCase(
+                        email = _signUpUiState.value.email,
+                        password = _signUpUiState.value.password
+                    )
+                    result.collect { data ->
+                        if (data.data != null) _signUpUiState.update {
+                            it.copy(
+                                isLoading = false
+                            )
+                        }
+                    }
+                }
+            }
+
+            is SignUpEvent.GoogleClick -> {
+
+            }
+
+        }
+
     }
 
 }
